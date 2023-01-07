@@ -36,6 +36,40 @@ int main() {
 	cout << f(n , dp);
 	return 0;
 
+}
+
+// reducing time complexity
+
+#include<iostream>
+#include<bits/stdc++.h>
+#include <vector>
+
+using namespace std;
+
+
+
+
+int main() {
+
+	#ifndef ONLINE_JUDGE
+	freopen("input.txt", "r", stdin);
+	freopen("output.txt", "w", stdout);
+	#endif
+
+	int n;
+	cin>>n;
+
+	int prev2 = 0;
+	int prev =1;
+
+	for(int i = 2 ; i <= n ; i++ ){
+		int curr = prev + prev2;
+		prev2 = prev;
+		prev = curr;
+	}
+
+	cout<<prev;
+	return 0;
 
 
 
