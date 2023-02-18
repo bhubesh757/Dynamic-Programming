@@ -84,3 +84,31 @@ bool subsetSumToK(int n, int k, vector<int> &arr) {
     
     return dp[n-1][k];
 }
+
+
+//space optimization
+#include <bits/stdc++.h> 
+bool subsetSumToK(int n, int k, vector<int> &arr) {
+    // vector<vector<bool>> dp(n,vector<bool>(k+1,false));
+    vector<bool> prev(k+1 , 0) , curr(k+1 , 0);
+    prev[0] = true ;
+    curr[0] = true;
+    
+        prev[arr[0]] = true;
+    
+    for(int ind = 1; ind<n; ind++){
+        for(int target= 1; target<=k; target++){
+            
+            bool notTake = prev[target];
+    
+            bool take = false;
+                if(target>= arr[ind])
+                    take = prev[target-arr[ind]];
+        
+            curr[target]= notTake||take;
+        }
+        prev = curr;
+    }
+    
+    return prev[k];
+}
