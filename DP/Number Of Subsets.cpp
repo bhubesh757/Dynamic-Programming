@@ -81,5 +81,37 @@ int findWays(vector<int> &num, int tar)
     return dp[n-1][tar];
 }
 
+//space optimization
+
+#include <bits/stdc++.h> 
+//create a function
+
+int findWays(vector<int> &num, int tar)
+{
+    int n = num.size();
+    vector<int> prev(tar+1 , 0) , curr(tar+1);
+    //convert the -1 to 0 for tabulation
+    //base cases
+    prev[0] = curr[0] = 1;
+    if(num[0] <= tar) {
+        prev[num[0]] = 1; 
+    }
+
+    for(int ind = 1 ; ind < n ; ind++) {
+        for(int sum = 0 ; sum <= tar ; sum++) {
+            //paste the recursion part over here
+            int notTake = prev[sum];
+            int take = 0;
+
+   if(num[ind] <= sum) {
+       take = prev[sum- num[ind]];
+   }
+    curr[sum] =  take + notTake;
+        }
+        prev = curr;
+    }
+    return prev[tar];
+}
+
 
 
