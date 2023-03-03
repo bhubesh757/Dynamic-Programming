@@ -1,3 +1,4 @@
+Prerequisite is DP 17 
 //Memoization
 #include <bits/stdc++.h> 
 // as pe r the question they mentioned that it should be in 1e9 + 7
@@ -32,4 +33,4 @@ int countPartitions(int n, int d, vector<int> &arr) {
 }
 // time limit exceeded time complexity :  O(n*n) 
 
-
+\
