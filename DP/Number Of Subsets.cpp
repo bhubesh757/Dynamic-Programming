@@ -114,4 +114,26 @@ int findWays(vector<int> &num, int tar)
 }
 
 
+// modifies test cases which doesnt match the other test cases 
+int f(int ind , int sum , vector<int> &num) {
+    if(ind == 0) {
+        if(sum == 0 &&  num[0] == 0 ) return 2;
+        if(sum == 0 || sum == num[0]) return 1;
+        return 0;
+    }
+
+   int notTake = f(ind -1 , sum , num);
+   int take = 0;
+
+   if(num[ind] <= sum) {
+       take = f(ind - 1 , sum - num[ind] , num);
+   }
+   return take + notTake;
+}
+int findWays(vector<int> &num, int tar)
+{
+    int n = num.size();
+    //caling the function
+    return f(n-1 , tar , num);
+}
 
